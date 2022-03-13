@@ -1,0 +1,277 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Crud Test",
+        "description": "Здесь описаны все роуты.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Laravel Swagger API server"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Получение коллекции сущностей",
+                "operationId": "272e651352a27a236c4b023d579d9c73",
+                "parameters": [
+                    {
+                        "name": "sortingField",
+                        "in": "query",
+                        "description": "Поле сортировки",
+                        "required": false,
+                        "schema": {
+                            "type": "text"
+                        }
+                    },
+                    {
+                        "name": "sortingDirection",
+                        "in": "query",
+                        "description": "Направление сортировки",
+                        "required": false,
+                        "schema": {
+                            "type": "text"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Лимит",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "street",
+                        "in": "query",
+                        "description": "Улица",
+                        "required": false,
+                        "schema": {
+                            "type": "text"
+                        }
+                    },
+                    {
+                        "name": "area",
+                        "in": "query",
+                        "description": "Площадь",
+                        "required": false,
+                        "schema": {
+                            "type": "float"
+                        }
+                    },
+                    {
+                        "name": "numberOfRooms",
+                        "in": "query",
+                        "description": "Число комнат",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "dateOfConstuction",
+                        "in": "query",
+                        "description": "Дата постройки",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "thereAreGhosts",
+                        "in": "query",
+                        "description": "Наличие призраков))",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "404": {
+                        "description": "House not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Сохранение данных в БД",
+                "operationId": "d2850f475e4e1008c3b998bd63b3e984",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "street",
+                                    "area",
+                                    "number_of_rooms",
+                                    "price",
+                                    "date_of_construction",
+                                    "there_are_ghosts"
+                                ],
+                                "properties": {
+                                    "street": {
+                                        "type": "string",
+                                        "example": "Ул.Пушкинская, дом 19"
+                                    },
+                                    "area": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 19
+                                    },
+                                    "number_of_rooms": {
+                                        "type": "integer",
+                                        "example": 3
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 10000.45
+                                    },
+                                    "date_of_construction": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2022-03-04"
+                                    },
+                                    "there_are_ghosts": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            }
+        },
+        "/{id}": {
+            "get": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Получение сущности по id",
+                "operationId": "e1b835c055a0bd1f782fe2c3eceb72a9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Изменение данных в БД",
+                "operationId": "93474f61a44242082661fd964c1032fd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "street": {
+                                        "type": "string",
+                                        "example": "Ул.Пушкинская, дом 19"
+                                    },
+                                    "area": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 19
+                                    },
+                                    "number_of_rooms": {
+                                        "type": "integer",
+                                        "example": 3
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 10000.45
+                                    },
+                                    "date_of_construction": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2022-03-04"
+                                    },
+                                    "there_are_ghosts": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Удаление сущности из БД",
+                "operationId": "70f9d25d9224a488064274dc9fe6c50d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
