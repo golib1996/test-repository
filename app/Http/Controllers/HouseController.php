@@ -131,6 +131,9 @@ class HouseController extends Controller
      *          in="path",
      *          name="id",
      *          required=true,
+     *          @OA\Schema (
+     *                   type="integer",
+     *          ),
      *     ),
      *     @OA\Response (
      *         response="200",
@@ -168,11 +171,13 @@ class HouseController extends Controller
      *      ),
      *     @OA\Response (
      *         response=200,
-     *         description="success"
+     *         description="success",
+     *         @OA\JsonContent(),
      *     ),
      *     @OA\Response(
      *          response=422,
      *          description="Ошибка валидации",
+     *          @OA\JsonContent(),
      *     ),
      * ),
      *
@@ -207,11 +212,13 @@ class HouseController extends Controller
      *      ),
      *     @OA\Response (
      *         response=200,
-     *         description="success"
+     *         description="success",
+     *         @OA\JsonContent(),
      *     ),
      *     @OA\Response(
      *          response=422,
      *          description="Ошибка валидации",
+     *          @OA\JsonContent(),
      *     ),
      * ),
      *
